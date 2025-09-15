@@ -81,6 +81,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                       icon: Icon(Icons.login),
                     ),
+                    ElevatedButton(
+                      onPressed: () {
+                        isValidation = true;
+                        setState(() {});
+                        Navigator.pushNamed(context, '/register');
+                      },
+                      child: Text('Registrate'),
+                    ),
                   ],
                 ),
               ),
