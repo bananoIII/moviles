@@ -48,11 +48,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
     Future<void> _pickAndCropImage() async {
       final picker = ImagePicker();
 
-      // Seleccionar imagen desde galería
       final pickedFile = await picker.pickImage(source: ImageSource.gallery);
       if (pickedFile == null) return;
 
-      // Recortar imagen
       final croppedFile = await ImageCropper().cropImage(
         sourcePath: pickedFile.path,
         uiSettings: [
@@ -145,7 +143,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
               if (errors.isNotEmpty) {
                 Fluttertoast.showToast(
-                  msg: errors.join('\n'), // muestra todos los errores
+                  msg: errors.join('\n'),
                   toastLength: Toast.LENGTH_LONG,
                   gravity: ToastGravity.BOTTOM,
                   backgroundColor: Colors.red,
@@ -162,8 +160,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     })
                     .then((_) {
                       Fluttertoast.showToast(
-                        msg:
-                            'Se ha registrado correctamente.', // muestra todos los errores
+                        msg: 'Se ha registrado correctamente.',
                         toastLength: Toast.LENGTH_LONG,
                         gravity: ToastGravity.BOTTOM,
                         backgroundColor: Colors.green,
@@ -242,14 +239,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         height: MediaQuery.of(context).size.height * .65,
                         padding: EdgeInsets.symmetric(horizontal: 10),
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(
-                            0.9,
-                          ), // Fondo blanco con 30% opacidad
+                          color: Colors.white.withOpacity(0.9),
                           borderRadius: BorderRadius.circular(15),
                           border: Border.all(
-                            color: Colors.black.withOpacity(
-                              0.6,
-                            ), // Borde negro con 60% opacidad
+                            color: Colors.black.withOpacity(0.6),
                             width: 2,
                           ),
                         ),

@@ -82,11 +82,33 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: Drawer(
         child: ListView(
           children: [
+            UserAccountsDrawerHeader(
+              accountName: Text('Banano'),
+              accountEmail: Text('banano@gmail.com'),
+              currentAccountPicture: CircleAvatar(
+                backgroundImage: AssetImage("assets/crs_bla01a.png"),
+              ),
+            ),
             const DrawerHeader(child: Text('Menu')),
             ListTile(
               title: Text('Práctica 1'),
               onTap: () {
                 Navigator.pushNamed(context, '/home/practica1');
+              },
+            ),
+            ListTile(
+              title: Text('Práctica 3'),
+              onTap: () {
+                Navigator.pushNamed(context, '/home/practica3');
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.microwave),
+              title: Text('Movies'),
+              subtitle: Text('DataBase'),
+              trailing: Icon(Icons.chevron_right),
+              onTap: () {
+                Navigator.pushNamed(context, '/movies/list');
               },
             ),
           ],

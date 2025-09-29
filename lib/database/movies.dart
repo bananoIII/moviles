@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
+import 'package:progra_movil/models/movies.dart';
 import 'package:sqflite/sqflite.dart';
 
 class MoviesDatabase {
@@ -29,6 +30,7 @@ class MoviesDatabase {
         name varchar (50),
         duration char(3) ,
         date_release char(10),
+        image varchar(15),
         constraint pk_tbl_movies primary key(id_movie)
       );
     ''';
@@ -40,7 +42,11 @@ class MoviesDatabase {
     return con!.insert(table, data);
   }
 
-  select() {}
+  Future<List<Movies>> select(String table) async {
+    var con = await database;
+    final res = await con!.query(table);
+    return res.map((movie) => Movies.fromMap(movie)).toList();
+  }
 
   Future<int> update(String table, Map<String, dynamic> data) async {
     var con = await database;

@@ -152,21 +152,17 @@ class _Practica1DetailsScreenState extends State<Practica1DetailsScreen> {
                       child: Container(
                         height: 54,
                         child: OutlinedButton(
-                          onPressed: () {
-                            // acción al presionar
-                          },
+                          onPressed: () {},
                           style: OutlinedButton.styleFrom(
                             foregroundColor: Theme.of(
                               context,
-                            ).colorScheme.onPrimary, // color del texto
+                            ).colorScheme.onPrimary,
                             side: BorderSide(
                               color: Theme.of(context).colorScheme.onPrimary,
                               width: 1,
-                            ), // borde
+                            ),
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(
-                                30.0,
-                              ), // bordes redondeados
+                              borderRadius: BorderRadius.circular(30.0),
                             ),
                             padding: const EdgeInsets.symmetric(
                               horizontal: 20,
@@ -185,18 +181,14 @@ class _Practica1DetailsScreenState extends State<Practica1DetailsScreen> {
                       child: Container(
                         height: 56,
                         child: ElevatedButton(
-                          onPressed: () {
-                            // acción al presionar
-                          },
+                          onPressed: () {},
                           style: ElevatedButton.styleFrom(
-                            padding:
-                                EdgeInsets.zero, // necesario para el gradiente
+                            padding: EdgeInsets.zero,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(80.0),
                             ),
                             elevation: 2,
-                            backgroundColor: Colors
-                                .transparent, // para que el gradiente se vea
+                            backgroundColor: Colors.transparent,
                           ),
                           child: Ink(
                             decoration: BoxDecoration(

@@ -48,4 +48,27 @@ class ThemeSettings {
     );
     return theme;
   }
+
+  static ThemeData p3lightTheme() {
+    final theme = ThemeData.light().copyWith(
+      colorScheme: const ColorScheme(
+        brightness: Brightness.light,
+        primary: Color(0xFF007BFF), // Azul principal (botones, iconos)
+        onPrimary: Colors.white, // Texto sobre botones primarios
+        secondary: Color(0xFFCCE6FF), // Azul claro (fondos suaves, tarjetas)
+        onSecondary: Colors.black, // Texto sobre secundarios
+        error: Colors.redAccent,
+        onError: Colors.white,
+        surface: Color(0xFFF2F9FF), // Fondo general claro
+        onSurface: Colors.black87,
+      ),
+      scaffoldBackgroundColor: Color(0xFFF2F9FF),
+      appBarTheme: const AppBarTheme(
+        backgroundColor: Colors.white,
+        foregroundColor: Color(0xFF007BFF),
+        elevation: 0,
+      ),
+    );
+    return theme;
+  }
 }
