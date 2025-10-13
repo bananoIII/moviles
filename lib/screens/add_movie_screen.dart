@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:progra_movil/database/movies.dart';
+import 'package:progra_movil/models/movies.dart';
 
 class AddMovieScreen extends StatefulWidget {
   const AddMovieScreen({super.key});
@@ -16,6 +17,7 @@ class _AddMovieScreenState extends State<AddMovieScreen> {
   TextEditingController conRelease = TextEditingController();
 
   DateTime selectedDate = DateTime.now();
+  DateTime selectedDate2 = DateTime.now();
   @override
   void initState() {
     super.initState();
@@ -23,6 +25,15 @@ class _AddMovieScreenState extends State<AddMovieScreen> {
   }
 
   Widget build(BuildContext context) {
+    Movies? movie;
+    if (ModalRoute.of(context)?.settings.arguments != null) {
+      movie = ModalRoute.of(context)?.settings.arguments as Movies;
+
+      conTitle.text = movie.name!;
+      conTime.text = movie.duration!;
+      conRelease.text = movie.name!;
+    }
+
     final txtTitle = TextFormField(
       controller: conTitle,
       decoration: InputDecoration(hintText: 'Titulo de la pelicula'),
@@ -40,13 +51,26 @@ class _AddMovieScreenState extends State<AddMovieScreen> {
 
     final btnSend = ElevatedButton(
       onPressed: () {
-        moviesDB!
-            .insert('tbl_movies', {
-              "name": conTitle.text,
-              "duration": conTime.text,
-              "date_release": conRelease.text,
-            })
-            .then((value) => Navigator.pop);
+        if (movie == null) {
+          moviesDB!
+              .insert('tbl_movies', {
+                "name": conTitle.text,
+                "duration": conTime.text,
+                "date_release": conRelease.text,
+                "image": '2',
+              })
+              .then((value) => Navigator.pop(context));
+        } else {
+          moviesDB!
+              .update('tbl_movies', {
+                "id_movie": movie.id_movie,
+                "name": conTitle.text,
+                "duration": conTime.text,
+                "date_release": conRelease.text,
+                "image": '2',
+              })
+              .then((value) => Navigator.pop(context));
+        }
       },
       child: Text('Guardar'),
     );
@@ -64,12 +88,13 @@ class _AddMovieScreenState extends State<AddMovieScreen> {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: selectedDate,
-      firstDate: DateTime(1950),
-      lastDate: DateTime(2025),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
     );
     if (picked != null) {
       setState(() {
-        selectedDate = picked;
+        selectedDate2 = picked;
+        conRelease.text = "${picked.day}/${picked.month}/${picked.year}";
       });
     }
   }

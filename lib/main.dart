@@ -1,4 +1,6 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:progra_movil/firebase_options.dart';
 import 'package:progra_movil/screens/add_movie_screen.dart';
 import 'package:progra_movil/screens/home_screen.dart';
 import 'package:progra_movil/screens/list_movies.dart';
@@ -12,7 +14,11 @@ import 'package:progra_movil/screens/register_screen.dart';
 import 'package:progra_movil/utils/theme_settings.dart';
 import 'package:progra_movil/utils/value_listener.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

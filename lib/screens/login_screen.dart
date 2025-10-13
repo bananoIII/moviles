@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lottie/lottie.dart';
+import 'package:progra_movil/firebase/fire_auth.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -9,6 +11,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  Firebase_Auth? auth = Firebase_Auth();
   TextEditingController conUser = TextEditingController();
   TextEditingController conPwd = TextEditingController();
   //false
@@ -71,13 +74,40 @@ class _LoginScreenState extends State<LoginScreen> {
                       onPressed: () {
                         isValidation = true;
                         setState(() {});
-                        Future.delayed(Duration(milliseconds: 1200))
-                            .then(
-                              (onValue) => {
-                                Navigator.pushNamed(context, '/home'),
-                              },
-                            )
-                            .then((onValue) => {isValidation = false});
+
+                        auth!
+                            .signInEmailPassword(conUser.text, conPwd.text)
+                            .then((user) {
+                              if (user!.uid != "") {
+                                Fluttertoast.showToast(
+                                  msg: 'MGS1.',
+                                  toastLength: Toast.LENGTH_LONG,
+                                  gravity: ToastGravity.BOTTOM,
+                                  backgroundColor: Colors.red[600],
+                                  textColor: Colors.white,
+                                  fontSize: 16.0,
+                                );
+                              }
+                              if (!user!.emailVerified) {
+                                return (Fluttertoast.showToast(
+                                  msg: 'MGS2.',
+                                  toastLength: Toast.LENGTH_LONG,
+                                  gravity: ToastGravity.BOTTOM,
+                                  backgroundColor: Colors.red[600],
+                                  textColor: Colors.white,
+                                  fontSize: 16.0,
+                                ));
+                              }
+
+                              return (Navigator.pushNamed(context, '/home'));
+                            })
+                            .then((onValue) {
+                              Future.delayed(Duration(seconds: 2)).then((
+                                onValue,
+                              ) {
+                                isValidation = false;
+                              });
+                            });
                       },
                       icon: Icon(Icons.login),
                     ),

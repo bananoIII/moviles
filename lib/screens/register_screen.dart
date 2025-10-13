@@ -5,6 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lottie/lottie.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:image_cropper/image_cropper.dart';
+import 'package:progra_movil/firebase/fire_auth.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -15,7 +16,7 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   File? _image;
-
+  Firebase_Auth? auth = Firebase_Auth();
   TextEditingController conUser = TextEditingController();
   TextEditingController conName = TextEditingController();
   TextEditingController conPwd = TextEditingController();
@@ -154,23 +155,36 @@ class _RegisterScreenState extends State<RegisterScreen> {
               } else {
                 isValidation = true;
                 setState(() {});
-                Future.delayed(Duration(milliseconds: 2000))
-                    .then((_) {
-                      isValidation = false;
-                    })
-                    .then((_) {
-                      Fluttertoast.showToast(
-                        msg: 'Se ha registrado correctamente.',
-                        toastLength: Toast.LENGTH_LONG,
-                        gravity: ToastGravity.BOTTOM,
-                        backgroundColor: Colors.green,
-                        textColor: Colors.white,
-                        fontSize: 16.0,
-                      );
-                    })
-                    .then((_) {
-                      clearForm();
-                    });
+                auth!.registerWithEmail(conUser.text, conPwd.text).then((user) {
+                  if (user != null) {
+                    Future.delayed(Duration(milliseconds: 2000))
+                        .then((_) {
+                          isValidation = false;
+                        })
+                        .then((_) {
+                          Fluttertoast.showToast(
+                            msg: 'Se ha registrado correctamente.',
+                            toastLength: Toast.LENGTH_LONG,
+                            gravity: ToastGravity.BOTTOM,
+                            backgroundColor: Colors.green,
+                            textColor: Colors.white,
+                            fontSize: 16.0,
+                          );
+                        })
+                        .then((_) {
+                          clearForm();
+                        });
+                  } else {
+                    Fluttertoast.showToast(
+                      msg: 'Ah ocurrido un error.',
+                      toastLength: Toast.LENGTH_LONG,
+                      gravity: ToastGravity.BOTTOM,
+                      backgroundColor: Colors.red,
+                      textColor: Colors.white,
+                      fontSize: 16.0,
+                    );
+                  }
+                });
               }
             }
           : null,
