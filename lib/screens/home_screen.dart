@@ -111,6 +111,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 Navigator.pushNamed(context, '/movies/list');
               },
             ),
+            ListTile(
+              title: Text('Songs'),
+              onTap: () {
+                Navigator.pushNamed(context, '/home/firebase/songs');
+              },
+            ),
           ],
         ),
       ),

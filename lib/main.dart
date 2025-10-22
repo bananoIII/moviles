@@ -2,6 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:progra_movil/firebase_options.dart';
 import 'package:progra_movil/screens/add_movie_screen.dart';
+import 'package:progra_movil/screens/firebase_add_songs_screen.dart';
+import 'package:progra_movil/screens/firebase_list_songs_screen.dart';
 import 'package:progra_movil/screens/home_screen.dart';
 import 'package:progra_movil/screens/list_movies.dart';
 import 'package:progra_movil/screens/login_screen.dart';
@@ -41,6 +43,8 @@ class MyApp extends StatelessWidget {
             "/home/practica3": (context) => getStarted(),
             "/home/practica3/home": (context) => P3MainScreen(),
             "/home/practica3/flight/details": (context) => P3MyFlightDetails(),
+            "/home/firebase/songs": (context) => FirebaseListSongsScreen(),
+            "/home/firebase/songs/add": (context) => FirebaseAddSongsScreen(),
           },
           home: LoginScreen(),
         );

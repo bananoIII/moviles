@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:progra_movil/components/songs_widget.dart';
 import 'package:progra_movil/firebase/songs_database.dart';
 
 class FirebaseListSongsScreen extends StatefulWidget {
@@ -15,7 +16,20 @@ class _FirebaseListSongsScreenState extends State<FirebaseListSongsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Canciones')),
+      appBar: AppBar(
+        title: Text('Canciones'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: () {
+              Navigator.pushNamed(
+                context,
+                '/home/firebase/songs/add',
+              ).then((onValue) => setState(() {}));
+            },
+          ),
+        ],
+      ),
       body: StreamBuilder(
         stream: songsDatabase.read_song(),
         builder: (context, snapshot) {
@@ -30,7 +44,10 @@ class _FirebaseListSongsScreenState extends State<FirebaseListSongsScreen> {
           return ListView.builder(
             itemCount: snapshot.data!.docs.length,
             itemBuilder: (context, index) {
-              return Text(snapshot.data!.docs[index].get('title'));
+              //return Text(snapshot.data!.docs[index].get('title'));
+              return SongsWidget(
+                song: snapshot.data!.docs[index].data() as Map<String, dynamic>,
+              );
             },
           );
         },

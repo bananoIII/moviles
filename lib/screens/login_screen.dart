@@ -11,7 +11,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  Firebase_Auth? auth = Firebase_Auth();
+  //Firebase_Auth? auth = Firebase_Auth();
   TextEditingController conUser = TextEditingController();
   TextEditingController conPwd = TextEditingController();
   //false
@@ -75,6 +75,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         isValidation = true;
                         setState(() {});
 
+                        Future.delayed(Duration(seconds: 2))
+                            .then((onValue) {
+                              isValidation = false;
+                            })
+                            .then((onValue) {
+                              (Navigator.pushNamed(context, '/home'));
+                            });
+                        /*
                         auth!
                             .signInEmailPassword(conUser.text, conPwd.text)
                             .then((user) {
@@ -108,6 +116,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 isValidation = false;
                               });
                             });
+                      */
                       },
                       icon: Icon(Icons.login),
                     ),

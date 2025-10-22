@@ -26,7 +26,7 @@ class _P3MyFlightDetailsState extends State<P3MyFlightDetails> {
                 height: MediaQuery.of(context).size.height * 0.4,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage(flight.airport_image!),
+                    image: AssetImage(''),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -51,7 +51,7 @@ class _P3MyFlightDetailsState extends State<P3MyFlightDetails> {
                           height: 55,
                           child: Row(
                             children: [
-                              SvgPicture.asset(flight.image, height: 55),
+                              SvgPicture.asset('flight.image', height: 55),
                             ],
                           ),
                         ),
@@ -68,7 +68,7 @@ class _P3MyFlightDetailsState extends State<P3MyFlightDetails> {
                               ),
                             ),
                             Text(
-                              flight.origin,
+                              'flight.origin',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 15,
@@ -116,7 +116,7 @@ class _P3MyFlightDetailsState extends State<P3MyFlightDetails> {
                           ),
                         ),
                         Text(flight.departure_time!),
-                        Text(flight.origin),
+                        Text('flight.origin'),
                       ],
                     ),
                     Padding(
@@ -137,7 +137,7 @@ class _P3MyFlightDetailsState extends State<P3MyFlightDetails> {
                           ),
                         ),
                         Text(flight.arrival_time!),
-                        Text(flight.destination),
+                        Text('flight.destination'),
                       ],
                     ),
                   ],
@@ -201,7 +201,7 @@ class _P3MyFlightDetailsState extends State<P3MyFlightDetails> {
                               style: TextStyle(fontSize: 13),
                             ),
                             Text(
-                              flight.departure_airport!,
+                              'flight.departure_airport',
                               style: TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 15,

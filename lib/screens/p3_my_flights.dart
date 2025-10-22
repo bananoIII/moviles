@@ -11,7 +11,8 @@ class P3MyFlights extends StatefulWidget {
 }
 
 class _P3MyFlightsState extends State<P3MyFlights> {
-  final List<MyFlights> myFlightsList = [
+  /*
+final List<MyFlights> myFlightsList = [
     MyFlights(
       title: 'Aeropuerto de España',
       origin: 'Canadá',
@@ -147,6 +148,7 @@ class _P3MyFlightsState extends State<P3MyFlights> {
     ),
   ];
 
+  */
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -203,7 +205,7 @@ class _P3MyFlightsState extends State<P3MyFlights> {
                   ),
                 ),
 
-                SizedBox(height: 20),
+                SizedBox(height: 20) /*
                 Container(
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height * .7,
@@ -308,7 +310,7 @@ class _P3MyFlightsState extends State<P3MyFlights> {
                       }).toList(),
                     ],
                   ),
-                ),
+                ),*/,
               ],
             ),
           ],
