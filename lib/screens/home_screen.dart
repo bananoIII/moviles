@@ -103,6 +103,12 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
             ListTile(
+              title: Text('Práctica 4'),
+              onTap: () {
+                Navigator.pushNamed(context, '/home/practica4');
+              },
+            ),
+            ListTile(
               leading: Icon(Icons.microwave),
               title: Text('Movies'),
               subtitle: Text('DataBase'),
@@ -115,6 +121,12 @@ class _HomeScreenState extends State<HomeScreen> {
               title: Text('Songs'),
               onTap: () {
                 Navigator.pushNamed(context, '/home/firebase/songs');
+              },
+            ),
+            ListTile(
+              title: Text('API MOVIES'),
+              onTap: () {
+                Navigator.pushNamed(context, '/home/api/movies');
               },
             ),
           ],

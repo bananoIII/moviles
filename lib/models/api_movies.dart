@@ -8,7 +8,7 @@ class ApiMovies {
   String overview;
   double popularity;
   String posterPath;
-  DateTime releaseDate;
+  String releaseDate;
   String title;
   double voteAverage;
   int voteCount;
@@ -33,8 +33,8 @@ class ApiMovies {
     return ApiMovies(
       adult: map['adult'],
       backdropPath: map['backdrop_path'] ?? '',
-      genreIds: map['genreIds'],
-      id: map['id'],
+      genreIds: map['genre_ids'].cast<int>(),
+      id: map['id'] ?? '',
       originalLanguage: map['original_language'],
       originalTitle: map['original_title'],
       overview: map['overview'],
